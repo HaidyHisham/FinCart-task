@@ -9,10 +9,10 @@ const egp = new Intl.NumberFormat("en-EG", {
   currency: "EGP",
 });
 
-const placeholder = "/placeholder.png"; // add a small placeholder in /public
+const placeholder = "/placeholder.png";
 
 const Product = ({ title, price, description, category, images }: TProduct) => {
-  // pick first valid image or fall back to the category image, then to placeholder
+
   const imgSrc =
     (Array.isArray(images) && images.find(Boolean)) ||
     category?.image ||
@@ -41,7 +41,7 @@ const Product = ({ title, price, description, category, images }: TProduct) => {
 
       <div className="fw-semibold mb-3">{egp.format(price)}</div>
 
-      {/* optional short description */}
+     
       <p className="text-muted small">
         {description.length > 120 ? description.slice(0, 120) + "…" : description}
       </p>

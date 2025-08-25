@@ -33,6 +33,7 @@ const productsSlice = createSlice({
         state.error = action.payload;
       }
     });
+    
   },
 });
 

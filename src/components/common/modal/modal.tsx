@@ -10,7 +10,7 @@ function CartShopeModal(props: ModalProps) {
   const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  // 👇 Calculate total price
+
   const total = items.reduce((sum, item) => sum + (item.price || 0), 0);
 
   return (
@@ -65,7 +65,7 @@ function CartShopeModal(props: ModalProps) {
               </div>
             ))}
 
-            {/* ✅ Summary Section */}
+          
             <div className="border-top pt-3 mt-3">
               <h5 className="d-flex justify-content-between">
                 <span>Total:</span>
