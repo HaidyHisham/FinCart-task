@@ -11,6 +11,7 @@ import type { TProduct } from "@customTypes/product";
 const { card, cardTitle, cardText, priceTag } = styles;
 const LIMIT = 10;
 
+
 type ProductCardProps = {
   record: TProduct;                   
   onAdd: (record: TProduct) => void;    
@@ -99,7 +100,7 @@ const Products = () => {
     <div className="text-center py-4 text-danger">{error}</div>
   ) : (
     <InfiniteScroll dataLength={records.length} next={fetchMoreData} hasMore={hasMore}
-      loader={loaderEl} endMessage={endMsgEl}>
+      loader={loaderEl} endMessage={endMsgEl} style={{ overflow: "hidden" }} >
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
         {productCards}
       </div>
