@@ -21,8 +21,13 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ record, onAdd }) =
   const imgSrc = record.images?.[0] ?? ""; 
   return (
     <div className="col ">
-      <div className={`card ${card} `}>
-        <img src={imgSrc} className="card-img-top" alt={record.title} style={imageStyle} />
+      <div className={`card ${card} h-100`}>
+<img
+  src={imgSrc}
+  className="card-img-top w-100 object-fit-cover img-hover-zoom"
+  alt={record.title}
+  style={{ height: "192px", objectFit: "cover" }} 
+/>
         <div className="card-body d-flex flex-column">
           <h5 className={`card-title ${cardTitle}`}>{record.title}</h5>
           <p className={`card-text flex-grow-1 ${cardText}`}>
@@ -32,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ record, onAdd }) =
           </p>
           <div className="d-flex justify-content-between align-items-center mt-3">
             <span className={priceTag}>${record.price}</span>
-            <Button variant="primary" size="sm" className="shadow-sm" onClick={() => onAdd(record)}>
+            <Button variant="primary" size="sm" className="shadow-sm px-3 py-2 rounded" onClick={() => onAdd(record)}>
               <FaShoppingCart /> Add
             </Button>
           </div>
