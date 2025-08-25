@@ -4,6 +4,9 @@ import { actGetProducts } from "@store/Products/ProductsSlice";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button } from "react-bootstrap";
 import { actAddToCart } from "@store/ShopCart/action/actionShopCartSlice";
+import styles from "@styles/products.module.css";
+
+const { card, cardTitle, cardText, priceTag } = styles;
 
 const LIMIT = 10;
 
@@ -57,43 +60,42 @@ const Products = () => {
             </p>
           }
         >
-          <div className="row row-cols-1 row-cols-md-3">
-            {records.length ? (
-              records.map((record) => (
-                <div className="col mb-4" key={record.id}>
-                  <div className="card">
-                    <img
-                      src={record.images[0]}
-                      className="card-img-top"
-                      alt={record.title}
-                      style={{ height: "300px", objectFit: "contain" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{record.title}</h5>
-                      <p className="card-text">
-                        {record.description.length > 120
-                          ? record.description.slice(0, 120) + "…"
-                          : record.description}
-                      </p>
-                      <Button
-                        className="btn btn-primary"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          dispatch(actAddToCart(record));
-                        }}
-                      >
-                        Add to cart ${record.price}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="col mb-4">
-                <div className="text-center py-4">There are no records.</div>
-              </div>
-            )}
+         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+  {records.map((record) => (
+    <div className="col" key={record.id}>
+   <div className={`card h-100 ${card}`}>
+        <img
+          src={record.images[0]}
+          className="card-img-top"
+          alt={record.title}
+          style={{ height: "220px", objectFit: "contain", padding: "12px" }}
+        />
+        <div className="card-body d-flex flex-column">
+        <h5 className={`card-title ${cardTitle}`}>{record.title}</h5>
+  <p className={`card-text flex-grow-1 ${cardText}`}>
+            {record.description.length > 120
+              ? record.description.slice(0, 120) + "…"
+              : record.description}
+          </p>
+          <div className="d-flex justify-content-between align-items-center mt-2">
+        <span className={priceTag}>${record.price}</span>
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(actAddToCart(record));
+              }}
+            >
+              Add to cart
+            </Button>
           </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
         </InfiniteScroll>
       )}
     </>

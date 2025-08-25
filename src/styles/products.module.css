@@ -1,0 +1,30 @@
+/* products.css */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+  min-height: 60px;
+}
+
+.price-tag {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #198754; 
+}
