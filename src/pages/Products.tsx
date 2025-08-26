@@ -24,7 +24,7 @@ const Products = () => {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
-  // Initial fetch
+
   useEffect(() => {
     dispatch(actGetProducts({ offset: 0, limit: LIMIT }));
   }, [dispatch]);

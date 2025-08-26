@@ -1,4 +1,5 @@
-// Loading.tsx
+
+import type { TLoading } from "@customTypes/shared";
 import type { ReactNode } from "react";
 
 type LoadingProps = {

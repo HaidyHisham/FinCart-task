@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Carousel, Button } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 import styles from "@styles/products.module.css";
 import type { TProduct } from "@customTypes/product";
@@ -11,20 +11,25 @@ type ProductCardProps = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ record, onAdd }) => {
-  const imgSrc = record.images?.[0] ?? "";
-
   return (
     <div className="col">
       <div className={`card ${card} h-100`}>
-        <img
-          src={imgSrc}
-          className="card-img-top w-100 object-fit-cover img-hover-zoom"
-          alt={record.title}
-          style={{ height: "192px", objectFit: "cover" }}
-          onError={(e) =>
-            ((e.currentTarget as HTMLImageElement).src = "/placeholder.png")
-          }
-        />
+        <Carousel interval={null}>
+          {record.images?.map((img, i) => (
+            <Carousel.Item key={i}>
+              <img
+                src={img}
+                className="d-block w-100"
+                alt={`${record.title}-${i}`}
+                style={{ height: "192px", objectFit: "cover" }}
+                onError={(e) =>
+                  ((e.currentTarget as HTMLImageElement).src = "/placeholder.png")
+                }
+              />
+            </Carousel.Item>
+          ))}
+        </Carousel>
+
         <div className="card-body d-flex flex-column">
           <h5 className={`card-title ${cardTitle}`}>{record.title}</h5>
           <p className={`card-text flex-grow-1 ${cardText}`}>
