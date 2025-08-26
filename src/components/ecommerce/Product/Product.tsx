@@ -18,6 +18,7 @@ const Product = ({ title, price, description, category, images }: TProduct) => {
     category?.image ||
     placeholder;
 
+    
   return (
     <div className={product}>
       <div className={productImg}>

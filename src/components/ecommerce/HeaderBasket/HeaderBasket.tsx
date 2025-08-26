@@ -3,18 +3,26 @@ import styles from "./styles.module.css";
 import CartShopeModal from "@components/common/modal/modal";
 import { useState } from "react";
 import { useAppSelector } from "@store/hooks";
+
 const { basketContainer, basketQuantity } = styles;
+
 const HeaderBasket = () => {
   const [modalShow, setModalShow] = useState(false);
-const { items } = useAppSelector((state) => state.cart);
+  const { items } = useAppSelector((state) => state.cart);
+
+
+  const totalCount = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
 
   return (
     <>
       <div className={basketContainer} onClick={() => setModalShow(true)}>
         <Logo title="basket icon" />
-        <div className={basketQuantity}> { items.length}</div>
+        {totalCount > 0 && (
+          <div className={basketQuantity}>{totalCount}</div>
+        )}
       </div>
-      <CartShopeModal show={modalShow} onHide={() => setModalShow(false)}  />
+
+      <CartShopeModal show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };

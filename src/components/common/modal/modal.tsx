@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import {
+  actAddToCart,
   actClearCart,
   actRemoveFromCart,
 } from "@store/ShopCart/action/actionShopCartSlice";
@@ -11,7 +12,8 @@ function CartShopeModal(props: ModalProps) {
   const dispatch = useAppDispatch();
 
 
-  const total = items.reduce((sum, item) => sum + (item.price || 0), 0);
+  const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
 
   return (
     <Modal
@@ -47,6 +49,23 @@ function CartShopeModal(props: ModalProps) {
                       <p className="card-text">
                         <strong>${item.price}</strong>
                       </p>
+                      <Button
+                  variant="outline-secondary"
+                  size="sm"
+                  onClick={() => dispatch(actRemoveFromCart(item.id))}
+                >
+                  -
+                </Button>
+
+                <span>{item.quantity}</span>
+
+                <Button
+                  variant="outline-secondary"
+                  size="sm"
+                  onClick={() => dispatch(actAddToCart(item))}
+                >
+                  +
+                </Button>
                     </div>
                     <div className="p-3">
                       <Button

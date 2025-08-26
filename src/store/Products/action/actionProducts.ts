@@ -16,7 +16,10 @@ const actGetProducts = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.message || error.message);
+        console.log(error);
+        debugger
+        
+        return rejectWithValue(error.message);
       } else {
         return rejectWithValue("An unexpected error");
       }
